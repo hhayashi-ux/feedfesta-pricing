@@ -21,9 +21,15 @@ export default async function handler(req, res) {
   });
 
   const r = await fetch(
-    `https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?${params}`
+    `https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260401?${params}`,
+    {
+      headers: {
+        'accessKey': accessKey,
+      }
+    }
   );
   const data = await r.json();
   return res.status(r.ok ? 200 : r.status).json(data);
 }
+
 
