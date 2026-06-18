@@ -24,12 +24,14 @@ export default async function handler(req, res) {
     `https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260401?${params}`,
     {
       headers: {
-        'accessKey': accessKey,
+        'Referer': 'https://www.rakuten.co.jp/',
+        'Origin': 'https://www.rakuten.co.jp',
       }
     }
   );
   const data = await r.json();
   return res.status(r.ok ? 200 : r.status).json(data);
 }
+
 
 
