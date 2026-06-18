@@ -7,10 +7,13 @@ export default async function handler(req, res) {
   if (!keyword) return res.status(400).json({ error: 'keyword required' });
 
   const appId = process.env.RAKUTEN_APP_ID;
+  const accessKey = process.env.RAKUTEN_ACCESS_KEY;
   if (!appId) return res.status(500).json({ error: 'RAKUTEN_APP_ID not set' });
+  if (!accessKey) return res.status(500).json({ error: 'RAKUTEN_ACCESS_KEY not set' });
 
   const params = new URLSearchParams({
     applicationId: appId,
+    accessKey: accessKey,
     keyword,
     hits: '10',
     sort: '+itemPrice',
@@ -23,3 +26,4 @@ export default async function handler(req, res) {
   const data = await r.json();
   return res.status(r.ok ? 200 : r.status).json(data);
 }
+
