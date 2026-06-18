@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     applicationId: appId,
     accessKey: accessKey,
     keyword,
-    hits: '10',
+    hits: '30',
     sort: '+itemPrice',
     format: 'json',
   });
